@@ -1,3 +1,11 @@
+# CADE
+
+This is the code for the paper entitled "**[Beyond Tokenization: Direct Timestep Embedding and Contrastive Alignment for Time-Series Question Answering](https://arxiv.org/abs/2606.18986)**"
+
+**Authors:** Yafeng Wu, Huu Hiep Nguyen, Thin Nguyen, Hung Le
+
+**Organization:** Applied Artificial Intelligence Institute (A2I2), Deakin University, Australia
+
 ## Getting Started
 
 ### Environment Requirements
