@@ -1,10 +1,18 @@
 # CADE
 
+🎆🎉 **Our paper has been accepted at IEEE ICDM 2026!** 🎉🎆
+
 This is the code for the paper entitled "**[Beyond Tokenization: Direct Timestep Embedding and Contrastive Alignment for Time-Series Question Answering](https://arxiv.org/abs/2606.18986)**"
 
 **Authors:** Yafeng Wu, Huu Hiep Nguyen, Thin Nguyen, Hung Le
 
 **Organization:** Applied Artificial Intelligence Institute (A2I2), Deakin University, Australia
+
+## What's New
+
+- 🎆 **[Aug 2026]** CADE has been **accepted at IEEE ICDM 2026**! See you at the conference.
+- 📄 **[Jun 2026]** Preprint released on [arXiv](https://arxiv.org/abs/2606.18986).
+- 💻 **[Jun 2026]** Code, datasets, and pre-computed results released in this repository.
 
 ## Getting Started
 
