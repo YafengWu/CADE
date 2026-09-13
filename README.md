@@ -32,6 +32,18 @@ The `data/` folder already contains the datasets required for training and testi
 
 ### Repository Structure
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/assets/repo-structure-dark.png">
+    <img src="docs/assets/repo-structure-light.png" width="920" alt="CADE repository structure: data/ feeds the per-method *.sh entrypoints, which train and test CADE, its SupCon-free ablation, and five baselines; deepseekv3.2.py is an untrained DeepSeek-V3 API baseline fed directly from data/; every method writes CSV files into results/, which the notebooks in test/ evaluate.">
+  </picture>
+</p>
+
+Each method lives in its own directory with a matching `*.sh` script that trains and tests it. `deepseekv3.2.py` is the one method that is never trained: it is prompted through the DeepSeek-V3 API on the same test data. All of them write their CSV files into `results/`, which the notebooks in `test/` read to compare performance.
+
+<details>
+<summary>Full file listing</summary>
+
 ```
 ├── CADE/                      # CADE model code (proposed method)
 ├── CADE_wo_SupCon/            # CADE without SupCon loss (ablation)
@@ -53,6 +65,8 @@ The `data/` folder already contains the datasets required for training and testi
 ├── deepseekv3.2.py            # DeepSeek-V3 API-based evaluation
 └── requirements.txt           # Python dependencies
 ```
+
+</details>
 
 ### Reproducing Results
 
