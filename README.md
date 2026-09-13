@@ -33,11 +33,15 @@ The `data/` folder already contains the datasets required for training and testi
 ### Repository Structure
 
 <p align="center">
+  <a href="https://YafengWu.github.io/CADE/architecture.html">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="docs/assets/repo-structure-dark.png">
     <img src="docs/assets/repo-structure-light.png" width="920" alt="CADE repository structure: data/ feeds the per-method *.sh entrypoints, which train and test CADE, its SupCon-free ablation, and five baselines; deepseekv3.2.py is an untrained DeepSeek-V3 API baseline fed directly from data/; every method writes CSV files into results/, which the notebooks in test/ evaluate.">
   </picture>
+  </a>
 </p>
+
+[**Explore the interactive diagram →**](https://YafengWu.github.io/CADE/architecture.html) — switch themes, search nodes, follow guided views, and export PNG/SVG. Click the diagram above to open it.
 
 Each method lives in its own directory with a matching `*.sh` script that trains and tests it. `deepseekv3.2.py` is the one method that is never trained: it is prompted through the DeepSeek-V3 API on the same test data. All of them write their CSV files into `results/`, which the notebooks in `test/` read to compare performance.
 
@@ -120,3 +124,4 @@ If you have any questions or suggestions, feel free to contact:
 - Huu Hiep Nguyen (s225250685@deakin.edu.au)
 - Thin Nguyen (thin.nguyen@deakin.edu.au)
 - Hung Le (thai.le@deakin.edu.au)
+
