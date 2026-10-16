@@ -10,6 +10,7 @@ This is the code for the paper entitled "**[Beyond Tokenization: Direct Timestep
 
 ## What's New
 
+- 🛠️ **[Oct 2026]** Fixed a label-parsing bug in the classification evaluation notebooks in `test/`. All classification accuracies drop by exactly 0.04, and the ranking of methods does not change. See [Update: classification evaluation fix](#update-classification-evaluation-fix-oct-2026).
 - 🎆 **[Aug 2026]** CADE has been **accepted at IEEE ICDM 2026**! See you at the conference.
 - 📄 **[Jun 2026]** Preprint released on [arXiv](https://arxiv.org/abs/2606.18986).
 - 💻 **[Jun 2026]** Code, datasets, and pre-computed results released in this repository.
@@ -102,6 +103,27 @@ Each script will train and test the corresponding model, and the result CSV file
 ```bash
 python deepseekv3.2.py
 ```
+
+### Update: Classification Evaluation Fix (Oct 2026)
+
+**What changed.** The classification notebooks in `test/` extract the predicted label from free-text answers. The old code picked the label that *starts* last in the text. For the answer "No freeze", the word "freeze" starts later than "no freeze", so both "Freeze" and "No freeze" were read as `freeze`. The updated code picks the label that *ends* last (the longer label wins a tie), so "No freeze" is read correctly. Only the classification code changed; nothing else in the notebooks was touched.
+
+**Why every model drops by the same amount (0.04).** All 8 models, DeepSeek-V3.2 included, answer "No freeze" for all 196 samples in the freeze-detection subset of the classification test set. They never predict "Freeze". The 16 samples whose true label is "Freeze" were therefore wrongly counted as correct for every model. The fix removes these same 16 samples (16 / 400 = 0.04) from every model's score. No other row changes between the old and new code.
+
+**Effect on conclusions.** The fix lowers every classification number by the same amount, so the ranking of methods and the gaps between them stay the same. All baselines were trained and evaluated by us with the same evaluation code (we do not copy numbers from other papers), so the comparisons and conclusions in the paper are unaffected.
+
+| Method | Classification (old) | Classification (fixed) |
+|---|---|---|
+| ITFormer | 0.7925 | 0.7525 |
+| Frozen Time-MoE | 0.8100 | 0.7700 |
+| Frozen Random Linear | 0.8250 | 0.7850 |
+| Time-MQA | 0.7200 | 0.6800 |
+| Time-MQA (Full FT) | 0.7350 | 0.6950 |
+| DeepSeek-V3.2 | 0.7275 | 0.6875 |
+| CADE w/o SupCon | 0.8025 | 0.7625 |
+| **CADE** | 0.8075 | 0.7675 |
+
+The ablation results (memory size and contrastive loss weight λ) shift by the same 0.04. Other tasks (forecasting, imputation, anomaly detection, true/false, multiple choice) are not affected.
 
 ## Citation
 
